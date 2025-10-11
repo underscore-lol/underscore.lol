@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="src/favicon.ico">
+<title>underscore.lol</title>
+<style>
+:root {
+  --bg: #0b0b0d;
+  --text: #fff;
+  --muted: #a0a0a0;
+  --panel: #111215;
+  --border: rgba(255,255,255,0.06);
+  --accent: #344851;
+  --rounded: 12px;
+  --transition: all .25s ease;
+}
+[data-theme="light"] {
+  --bg: #fafafa;
+  --text: #0b0b0d;
+  --muted: #555;
+  --panel: #fff;
+  --border: rgba(0,0,0,0.1);
+  --accent: #2563eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: var(--transition);
+  line-height: 1.6;
+}
+.wrap {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.theme-toggle input {
+  display: none;
+}
+.theme-toggle label {
+  cursor: pointer;
+  font-size: 20px;
+}
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--rounded);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: var(--transition);
+}
+.hero {
+  text-align: center;
+}
+.hero img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+.pronouns-pill {
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+.hero h2 {
+  margin: 10px 0;
+  font-size: 26px;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 10px auto;
+}
+.pill {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin: 4px;
+  font-size: 13px;
+}
+.project {
+  border: 1px solid var(--border);
+  border-radius: var(--rounded);
+  padding: 16px;
+  margin-bottom: 20px;
+  background: var(--panel);
+  transition: var(--transition);
+}
+.project:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.project h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+.project p {
+  color: var(--muted);
+  margin: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input, textarea {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--rounded);
+  padding: 10px;
+  color: var(--text);
+  font-size: 14px;
+}
+.btn {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--rounded);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 40px;
+}
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--rounded);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cursor {
+  animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <img src="src/logo.png" alt="Logo" style="width:32px;height:32px;">
+    <p>underscore.lol</p>
+  </div>
+  <div class="theme-toggle">
+    <input type="checkbox" id="themeSwitch">
+    <label for="themeSwitch">🌙</label>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="src/avatar.jpg" alt="Avatar">
+
+  <div class="identity">
+    <h3 class="name">underscore.lol</h3>
+    <span class="pronouns-pill">He/Him</span>
+  </div>
+
+  <h2><span id="typed">Building immersive experiences</span><span class="cursor">|</span></h2>
+  <p>I design, code, and deploy interactive Roblox experiences and full-stack web apps using Lua, JavaScript, and modern frameworks.</p>
+  <div>
+    <span class="pill">Luau</span>
+    <span class="pill">JavaScript</span>
+    <span class="pill">Node.js</span>
+    <span class="pill">Python</span>
+  </div>
+</section>
+
+<section id="about">
+  <h3>About Me</h3>
+  <p>I’m a passionate developer with a knack for creating immersive experiences in Roblox and the web. My journey began with Lua scripting in Roblox, and has expanded to include full-stack web development.</p>
+</section>
+
+<section id="projects">
+  <h3>Projects</h3>
+
+  <div class="project">
+    <h4>Cremé</h4>
+    <p>Lead Developer</p>
+  </div>
+
+  <div class="project">
+    <h4>This portfolio website!</h4>
+    <p>Built with HTML, CSS, and vanilla JavaScript.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h3>Contact Me</h3>
+  <form id="contactForm">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="you@example.com" required>
+    <textarea rows="4" placeholder=" " required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+<footer class="footer">
+  © <span id="year"></span> underscore.lol
+</footer>
+
+<div id="toast" class="toast"></div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeSwitch = document.getElementById('themeSwitch');
+const root = document.documentElement;
+if(localStorage.getItem('theme')==='light'){
+  root.setAttribute('data-theme','light');
+  themeSwitch.checked=true;
+}
+themeSwitch.addEventListener('change',()=>{
+  const theme=themeSwitch.checked?'light':'dark';
+  root.setAttribute('data-theme',theme);
+  localStorage.setItem('theme',theme);
+});
+
+// TYPEWRITER
+const typed=document.getElementById("typed");
+const words=["Building immersive experiences","Creating with code","Leading projects"];
+let i=0,j=0,deleting=false;
+setInterval(()=>{
+  typed.textContent=words[i].substring(0,j);
+  if(!deleting){
+    if(j<words[i].length) j++;
+    else deleting=true;
+  } else {
+    if(j>0) j--;
+    else { deleting=false; i=(i+1)%words.length; }
+  }
+},100);
+
+// CONTACT FORM TOAST
+const form=document.getElementById("contactForm");
+const toast=document.getElementById("toast");
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  toast.textContent="Message sent ✔️";
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),3000);
+  form.reset();
+});
+
+// IMAGE + INPUT OPTIMIZATIONS
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelectorAll("img").forEach(img=>img.loading="lazy");
+});
+const emailInput=form.querySelector('input[type="email"]');
+emailInput.addEventListener("paste",e=>e.preventDefault());
+emailInput.setAttribute("autocomplete","off");
+emailInput.setAttribute("autocorrect","off");
+emailInput.setAttribute("autocapitalize","off");
+emailInput.setAttribute("spellcheck","false");
+</script>
+</body>
+</html>
