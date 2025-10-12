@@ -249,12 +249,13 @@ input, textarea {
 
 <section id="contact">
   <h3>Contact Me</h3>
-  <form id="contactForm" action="https://getform.io/f/bdrdlvkb" method="POST">
+  <form action="https://getform.io/f/bdrdlvkb" method="POST">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="you@example.com" required>
     <textarea name="message" rows="4" placeholder="Your message..." required></textarea>
-    <button type="submit" class="btn">Send Message</button>
-  </form>
+    <input type="hidden" name="_gotcha" style="display:none !important">
+    <button type="submit">Send</button>
+</form>
 </section>
 
 <footer class="footer">
@@ -267,7 +268,6 @@ input, textarea {
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// THEME TOGGLE
 const themeSwitch = document.getElementById('themeSwitch');
 const root = document.documentElement;
 if(localStorage.getItem('theme')==='light'){
@@ -280,7 +280,6 @@ themeSwitch.addEventListener('change',()=>{
   localStorage.setItem('theme',theme);
 });
 
-// TYPEWRITER
 const typed=document.getElementById("typed");
 const words=["Building immersive experiences","Creating with code","Leading projects"];
 let i=0,j=0,deleting=false;
@@ -295,7 +294,6 @@ setInterval(()=>{
   }
 },100);
 
-// CONTACT FORM TOAST
 const form=document.getElementById("contactForm");
 const toast=document.getElementById("toast");
 form.addEventListener("submit",e=>{
@@ -306,7 +304,6 @@ form.addEventListener("submit",e=>{
   form.reset();
 });
 
-// IMAGE + INPUT OPTIMIZATIONS
 document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll("img").forEach(img=>img.loading="lazy");
 });
