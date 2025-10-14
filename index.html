@@ -116,6 +116,7 @@ section{
   margin:4px;
   font-size:13px;
 }
+
 .contact-links{
   display:flex;
   justify-content:center;
@@ -125,8 +126,6 @@ section{
 }
 .icon-btn{
   position:relative;
-  background:var(--panel);
-  border:1px solid var(--border);
   width:60px;
   height:60px;
   display:flex;
@@ -135,20 +134,14 @@ section{
   transition:var(--transition);
   cursor:pointer;
   text-decoration:none;
-}
-.icon-btn:hover{
-  transform:translateY(-3px);
-  border-color:var(--accent);
+  background:transparent;
+  border:none;
 }
 .icon-btn img{
-  width:65%;
-  height:65%;
+  width:100%;
+  height:100%;
   object-fit:contain;
   transition:var(--transition);
-  filter:brightness(1);
-}
-[data-theme="light"] .icon-btn img{
-  filter:brightness(0.1);
 }
 .icon-btn:hover img{
   filter:brightness(1.5);
@@ -176,6 +169,7 @@ section{
   visibility:visible;
   transform:translateX(-50%) translateY(0);
 }
+
 .footer{
   text-align:center;
   color:var(--muted);
@@ -198,6 +192,7 @@ section{
     <label for="themeSwitch">🌙</label>
   </div>
 </header>
+
 <section class="hero">
   <img src="src/avatar.jpg" alt="Avatar">
   <div class="identity">
@@ -231,10 +226,12 @@ section{
     </a>
   </div>
 </section>
+
 <footer class="footer">
   © <span id="year"></span> underscore.lol
 </footer>
 </div>
+
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 const themeSwitch=document.getElementById("themeSwitch"),root=document.documentElement;
