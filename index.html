@@ -123,8 +123,7 @@ section{
   margin-top:25px;
   flex-wrap:wrap;
 }
-
-/* Buttons with slight rounding and border */
+  
 .icon-btn {
   position: relative;
   width: 60px;
@@ -136,20 +135,22 @@ section{
   cursor: pointer;
   text-decoration: none;
   background: transparent;
-  border: 2px solid var(--border); /* nice border */
-  border-radius: 12px; /* slightly rounded square */
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .icon-btn img {
-  width: 32px;   /* fixed icon size */
+  width: 32px;   /* slightly smaller than button */
   height: 32px;
   object-fit: contain;
+  display: block;
+  border-radius: 0;
   transition: var(--transition);
-  border-radius: 0; /* keep icon fully square */
 }
 
 .icon-btn:hover {
-  border-color: var(--accent); /* optional hover effect */
+  border-color: var(--accent);
 }
 
 .footer{
