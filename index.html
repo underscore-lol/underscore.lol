@@ -136,20 +136,23 @@ section{
   transition:var(--transition);
   cursor:pointer;
   text-decoration:none;
-  overflow:hidden;
 }
 .icon-btn:hover{
   transform:translateY(-3px);
   border-color:var(--accent);
 }
 .icon-btn img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:65%;
+  height:65%;
+  object-fit:contain;
   transition:var(--transition);
+  filter:brightness(1);
+}
+[data-theme="light"] .icon-btn img{
+  filter:brightness(0.1);
 }
 .icon-btn:hover img{
-  filter:brightness(1.2);
+  filter:brightness(1.5);
 }
 .tooltip{
   position:absolute;
@@ -233,7 +236,6 @@ section{
   © <span id="year"></span> underscore.lol
 </footer>
 </div>
-
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 const themeSwitch=document.getElementById("themeSwitch"),root=document.documentElement;
