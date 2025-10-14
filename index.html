@@ -124,33 +124,36 @@ section{
   flex-wrap:wrap;
 }
 
-/* Icon buttons: slightly rounded square with centered, smaller icons */
+/* Fixed icon buttons: rounded square with proper icon sizing */
 .icon-btn {
-  position: relative;
   width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
   transition: var(--transition);
   cursor: pointer;
   text-decoration: none;
-  background: transparent;
-  border: 2px solid var(--border);
-  border-radius: 12px;
 }
 
 .icon-btn img {
-  width: 60%;  /* smaller than button so border shows */
+  width: 60%;  /* smaller than button to leave padding */
   height: 60%;
-  object-fit: contain;
+  object-fit: contain; /* keep proportions */
   display: block;
   border-radius: 0;
-  transition: var(--transition);
+  transition: transform 0.25s ease;
 }
 
 .icon-btn:hover {
   border-color: var(--accent);
+}
+
+.icon-btn:hover img {
+  transform: scale(1.1); /* optional pop effect */
 }
 
 .footer{
