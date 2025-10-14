@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="src/favicon.ico">
 <title>underscore.lol</title>
 <style>
 :root {
@@ -24,22 +25,24 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.4;overflow:hidden;transition:var(--transition)}
-header{width:100%;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--border)}
+header{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--panel);border-bottom:1px solid var(--border);transition:var(--transition)}
 header .brand{display:flex;align-items:center;gap:8px}
-header .brand p{font-size:12px;color:var(--muted)}
-.theme-toggle label{cursor:pointer;font-size:16px}
-.wrap{width:100%;height:calc(100% - 66px);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px;overflow:hidden}
-.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center}
-.hero img{width:100px;height:100px;border-radius:50%;border:2px solid var(--border)}
-.identity{display:flex;align-items:center;gap:4px;font-size:12px}
-.pronouns-pill{background:var(--accent);color:#fff;padding:1px 6px;border-radius:999px;font-size:10px}
-.hero h2{font-size:16px}
-.hero p{font-size:10px;color:var(--muted);max-width:280px}
-.pill{display:inline-block;background:var(--accent);color:#fff;padding:2px 6px;border-radius:999px;margin:1px;font-size:9px}
-.contact-links{display:flex;gap:4px;justify-content:center;flex-wrap:nowrap;margin-top:5px}
-.icon-btn{padding:2px 6px;font-size:10px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text);text-decoration:none;transition:var(--transition)}
+header .brand p{font-size:13px;color:var(--muted)}
+.brand img{width:20px;height:20px;filter:invert(1);transition:var(--transition)}
+[data-theme="light"] .brand img{filter:invert(0)}
+.theme-toggle label{cursor:pointer;font-size:18px}
+.wrap{width:100%;height:calc(100% - 78px);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:15px;overflow:hidden}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.hero img{width:130px;height:130px;border-radius:50%;border:2px solid var(--border)}
+.identity{display:flex;align-items:center;gap:6px;font-size:14px}
+.pronouns-pill{background:var(--accent);color:#fff;padding:2px 8px;border-radius:999px;font-size:11px}
+.hero h2{font-size:20px}
+.hero p{font-size:13px;color:var(--muted);max-width:360px}
+.pill{display:inline-block;background:var(--accent);color:#fff;padding:4px 10px;border-radius:999px;margin:2px;font-size:11px}
+.contact-links{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;margin-top:8px}
+.icon-btn{padding:5px 14px;font-size:12px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text);text-decoration:none;transition:var(--transition)}
 .icon-btn:hover{border-color:var(--accent);background:rgba(52,72,81,0.1)}
-.footer{width:100%;text-align:center;color:var(--muted);font-size:12px;padding:5px 0;border-top:1px solid var(--border)}
+.footer{width:100%;text-align:center;color:var(--muted);font-size:13px;padding:6px 0;border-top:1px solid var(--border)}
 .cursor{animation:blink 1s infinite}
 @keyframes blink{50%{opacity:0}}
 </style>
@@ -47,7 +50,7 @@ header .brand p{font-size:12px;color:var(--muted)}
 <body>
 <header>
   <div class="brand">
-    <img src="src/logo.png" alt="Logo" style="width:16px;height:16px">
+    <img src="src/logo.png" alt="Logo">
     <p>underscore.lol</p>
   </div>
   <div class="theme-toggle">
