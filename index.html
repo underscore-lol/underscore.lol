@@ -5,204 +5,187 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="src/favicon.ico">
 <title>underscore.lol</title>
-
 <style>
 :root {
-  --bg: #0b0b0d;
-  --text: #fff;
-  --muted: #a0a0a0;
-  --panel: #111215;
-  --border: rgba(255,255,255,0.06);
-  --accent: #344851;
-  --rounded: 12px;
-  --transition: all .25s ease;
+  --bg:#0b0b0d;
+  --text:#fff;
+  --muted:#a0a0a0;
+  --panel:#111215;
+  --border:rgba(255,255,255,0.06);
+  --accent:#344851;
+  --rounded:8px;
+  --transition:all .25s ease;
 }
 [data-theme="light"] {
-  --bg: #fafafa;
-  --text: #0b0b0d;
-  --muted: #555;
-  --panel: #fff;
-  --border: rgba(0,0,0,0.1);
-  --accent: #2563eb;
+  --bg:#fafafa;
+  --text:#0b0b0d;
+  --muted:#555;
+  --panel:#fff;
+  --border:rgba(0,0,0,0.1);
+  --accent:#2563eb;
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: var(--transition);
-  line-height: 1.6;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:var(--transition);
+  line-height:1.6;
 }
-.wrap {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
+.wrap{
+  width:100%;
+  max-width:800px;
+  margin:0 auto;
+  padding:40px 20px;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:40px;
 }
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-.brand p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
+.brand p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
 }
-.theme-toggle input {
-  display: none;
+.theme-toggle input{display:none}
+.theme-toggle label{
+  cursor:pointer;
+  font-size:20px;
 }
-.theme-toggle label {
-  cursor: pointer;
-  font-size: 20px;
+section{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--rounded);
+  padding:30px;
+  margin-bottom:30px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  transition:var(--transition);
 }
-section {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--rounded);
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  transition: var(--transition);
+.hero{text-align:center}
+.hero img{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:2px solid var(--border);
+  margin:0 auto 15px;
+  display:block;
 }
-.hero {
-  text-align: center;
+.identity{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:20px;
 }
-.hero img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.name{
+  font-size:20px;
+  font-weight:600;
+  margin:0;
 }
-.identity {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
+.pronouns-pill{
+  background:var(--accent);
+  color:#fff;
+  padding:1px 10px;
+  border-radius:999px;
+  font-size:13px;
 }
-.name {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0;
+.hero h2{
+  margin:10px 0;
+  font-size:26px;
 }
-.pronouns-pill {
-  background: var(--accent);
-  color: #fff;
-  padding: 1px 10px;
-  border-radius: 999px;
-  font-size: 13px;
+.hero p{
+  color:var(--muted);
+  max-width:600px;
+  margin:10px auto 20px;
 }
-.hero h2 {
-  margin: 10px 0;
-  font-size: 26px;
+.pill{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  margin:4px;
+  font-size:13px;
 }
-.hero p {
-  color: var(--muted);
-  max-width: 600px;
-  margin: 10px auto 20px;
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin-top:25px;
+  flex-wrap:wrap;
 }
-.pill {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 999px;
-  margin: 4px;
-  font-size: 13px;
+.icon-btn{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--rounded);
+  width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:var(--transition);
+  cursor:pointer;
+  text-decoration:none;
+  overflow:hidden;
 }
-
-.contact-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 25px;
-  flex-wrap: wrap;
+.icon-btn:hover{
+  transform:translateY(-3px);
+  border-color:var(--accent);
 }
-.icon-btn {
-  position: relative;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--rounded);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-  cursor: pointer;
-  text-decoration: none;
-  overflow: visible;
+.icon-btn img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:var(--transition);
 }
-.icon-btn:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
+.icon-btn:hover img{
+  filter:brightness(1.2);
 }
-.icon-btn img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  filter: brightness(1);
-  transition: var(--transition);
+.tooltip{
+  position:absolute;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--rounded);
+  padding:6px 10px;
+  color:var(--text);
+  font-size:13px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:var(--transition);
+  white-space:nowrap;
+  z-index:10;
 }
-[data-theme="light"] .icon-btn img {
-  filter: brightness(0.1);
+.icon-btn:hover .tooltip{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
 }
-.icon-btn:hover img {
-  filter: brightness(1.5);
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:40px;
 }
-.tooltip {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--rounded);
-  padding: 6px 10px;
-  color: var(--text);
-  font-size: 13px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: var(--transition);
-  white-space: nowrap;
-  z-index: 10;
-}
-.icon-btn:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 40px;
-}
-.cursor {
-  animation: blink 1s infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
+.cursor{animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
 </style>
 </head>
-
 <body>
 <div class="wrap">
-
 <header>
   <div class="brand">
     <img src="src/logo.png" alt="Logo" style="width:32px;height:32px;">
@@ -213,7 +196,6 @@ section {
     <label for="themeSwitch">🌙</label>
   </div>
 </header>
-
 <section class="hero">
   <img src="src/avatar.jpg" alt="Avatar">
   <div class="identity">
@@ -228,64 +210,37 @@ section {
     <span class="pill">Node.js</span>
     <span class="pill">Python</span>
   </div>
-
   <div class="contact-links">
     <a href="mailto:hello@underscore.lol" class="icon-btn">
       <img src="src/email.png" alt="Email">
       <span class="tooltip">hello@underscore.lol</span>
     </a>
-
     <a href="https://github.com/underscore-lol" target="_blank" class="icon-btn">
       <img src="src/github.png" alt="GitHub">
       <span class="tooltip">underscore-lol</span>
     </a>
-
     <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">
       <img src="src/twitter.png" alt="Twitter">
       <span class="tooltip">@under_thesc0re</span>
     </a>
-
     <a href="https://www.roblox.com/users/5408615144/" target="_blank" class="icon-btn">
       <img src="src/roblox.png" alt="Roblox">
       <span class="tooltip">under_thesc0re</span>
     </a>
   </div>
 </section>
-
 <footer class="footer">
   © <span id="year"></span> underscore.lol
 </footer>
 </div>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const themeSwitch = document.getElementById('themeSwitch');
-const root = document.documentElement;
-if(localStorage.getItem('theme')==='light'){
-  root.setAttribute('data-theme','light');
-  themeSwitch.checked=true;
-}
-themeSwitch.addEventListener('change',()=>{
-  const theme=themeSwitch.checked?'light':'dark';
-  root.setAttribute('data-theme',theme);
-  localStorage.setItem('theme',theme);
-});
-  
-const typed=document.getElementById("typed");
-const words=["Building immersive experiences","Creating with code","Leading projects"];
-let i=0,j=0,deleting=false;
-setInterval(()=>{
-  typed.textContent=words[i].substring(0,j);
-  if(!deleting){
-    if(j<words[i].length) j++;
-    else deleting=true;
-  } else {
-    if(j>0) j--;
-    else { deleting=false; i=(i+1)%words.length; }
-  }
-},100);
+document.getElementById("year").textContent=new Date().getFullYear();
+const themeSwitch=document.getElementById("themeSwitch"),root=document.documentElement;
+if(localStorage.getItem("theme")==="light"){root.setAttribute("data-theme","light");themeSwitch.checked=true;}
+themeSwitch.addEventListener("change",()=>{const t=themeSwitch.checked?"light":"dark";root.setAttribute("data-theme",t);localStorage.setItem("theme",t);});
+const typed=document.getElementById("typed"),words=["Building immersive experiences","Creating with code","Leading projects"];let i=0,j=0,deleting=false;
+setInterval(()=>{typed.textContent=words[i].substring(0,j);if(!deleting){if(j<words[i].length)j++;else deleting=true;}else{if(j>0)j--;else{deleting=false;i=(i+1)%words.length;}}},100);
 </script>
-
 </body>
 </html>
