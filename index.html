@@ -124,9 +124,6 @@ section{
   flex-wrap:wrap;
 }
 .icon-btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
   padding:5px 20px;
   font-size:16px;
   border:2px solid var(--border);
@@ -134,20 +131,13 @@ section{
   background:transparent;
   cursor:pointer;
   text-decoration:none;
+  color:var(--text);
   transition:var(--transition);
-}
-.icon-btn img {
-  width:32px;
-  height:32px;
-  object-fit:contain;
-  display:block;
-  transition:transform 0.25s ease;
+  display:inline-block;
 }
 .icon-btn:hover {
   border-color:var(--accent);
-}
-.icon-btn:hover img {
-  transform:scale(1.1);
+  background:rgba(52,72,81,0.1);
 }
 .footer{
   text-align:center;
@@ -187,18 +177,10 @@ section{
     <span class="pill">Python</span>
   </div>
   <div class="contact-links">
-    <a href="mailto:hello@underscore.lol" class="icon-btn">
-      <img src="src/email.png" alt="Email">
-    </a>
-    <a href="https://github.com/underscore-lol" target="_blank" class="icon-btn">
-      <img src="src/github.png" alt="GitHub">
-    </a>
-    <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">
-      <img src="src/twitter.png" alt="Twitter">
-    </a>
-    <a href="https://www.roblox.com/users/5408615144/" target="_blank" class="icon-btn">
-      <img src="src/roblox.png" alt="Roblox">
-    </a>
+    <a href="mailto:hello@underscore.lol" class="icon-btn">Email</a>
+    <a href="https://github.com/underscore-lol" target="_blank" class="icon-btn">GitHub</a>
+    <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">Twitter</a>
+    <a href="https://www.roblox.com/users/5408615144/" target="_blank" class="icon-btn">Roblox</a>
   </div>
 </section>
 
