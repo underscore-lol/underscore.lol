@@ -30,7 +30,8 @@ header .brand{display:flex;align-items:center;gap:8px}
 header .brand p{font-size:13px;color:var(--muted)}
 .brand img{width:20px;height:20px;filter:invert(1);transition:var(--transition)}
 [data-theme="light"] .brand img{filter:invert(0)}
-.theme-toggle label{cursor:pointer;font-size:18px}
+.theme-toggle button{background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;transition:opacity 0.3s ease;color:var(--text)}
+.theme-toggle button.fade{opacity:0}
 .wrap{width:100%;height:calc(100% - 78px);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:15px;overflow:hidden}
 .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
 .hero img{width:130px;height:130px;border-radius:50%;border:2px solid var(--border)}
@@ -54,8 +55,7 @@ header .brand p{font-size:13px;color:var(--muted)}
     <p>underscore.lol</p>
   </div>
   <div class="theme-toggle">
-    <input type="checkbox" id="themeSwitch">
-    <label for="themeSwitch">🌙</label>
+    <button id="themeButton">🌙</button>
   </div>
 </header>
 
@@ -73,6 +73,7 @@ header .brand p{font-size:13px;color:var(--muted)}
     <span class="pill">JavaScript</span>
     <span class="pill">Node.js</span>
     <span class="pill">Python</span>
+    <span class="pill">HTML & CSS</span>
   </div>
   <div class="contact-links">
     <a href="mailto:hello@underscore.lol" class="icon-btn">Email</a>
@@ -88,12 +89,38 @@ header .brand p{font-size:13px;color:var(--muted)}
 </footer>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
-const themeSwitch=document.getElementById("themeSwitch"),root=document.documentElement;
-if(localStorage.getItem("theme")==="light"){root.setAttribute("data-theme","light");themeSwitch.checked=true;}
-themeSwitch.addEventListener("change",()=>{const t=themeSwitch.checked?"light":"dark";root.setAttribute("data-theme",t);localStorage.setItem("theme",t);});
-const typed=document.getElementById("typed"),words=["Building immersive experiences","Creating with code","Leading projects"];let i=0,j=0,deleting=false;
-setInterval(()=>{typed.textContent=words[i].substring(0,j);if(!deleting){if(j<words[i].length)j++;else deleting=true;}else{if(j>0)j--;else{deleting=false;i=(i+1)%words.length;}}},100);
+document.getElementById("year").textContent = new Date().getFullYear();
+const root = document.documentElement;
+const themeButton = document.getElementById("themeButton");
+const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+const savedTheme = localStorage.getItem("theme");
+const initialTheme = savedTheme || (prefersLight ? "light" : "dark");
+root.setAttribute("data-theme", initialTheme);
+themeButton.textContent = initialTheme === "light" ? "☀️" : "🌙";
+
+themeButton.addEventListener("click", () => {
+  themeButton.classList.add("fade");
+  setTimeout(() => {
+    const current = root.getAttribute("data-theme");
+    const next = current === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    themeButton.textContent = next === "light" ? "☀️" : "🌙";
+    localStorage.setItem("theme", next);
+    themeButton.classList.remove("fade");
+  }, 200);
+});
+
+const typed = document.getElementById("typed"),
+words = ["Building immersive experiences","Creating with code","Leading projects"];
+let i=0,j=0,deleting=false;
+setInterval(()=>{
+  typed.textContent = words[i].substring(0,j);
+  if(!deleting){
+    if(j<words[i].length)j++;else deleting=true;
+  }else{
+    if(j>0)j--;else{deleting=false;i=(i+1)%words.length;}
+  }
+},100);
 </script>
 </body>
 </html>
