@@ -127,7 +127,7 @@ section {
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   margin-top: 25px;
   flex-wrap: wrap;
 }
@@ -135,7 +135,7 @@ section {
   position: relative;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 50%;
+  border-radius: var(--rounded);
   width: 50px;
   height: 50px;
   display: flex;
@@ -144,15 +144,15 @@ section {
   transition: var(--transition);
   cursor: pointer;
   text-decoration: none;
-  overflow: hidden;
+  overflow: visible;
 }
 .icon-btn:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
 }
 .icon-btn img {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   filter: brightness(1);
   transition: var(--transition);
@@ -166,6 +166,8 @@ section {
 .tooltip {
   position: absolute;
   bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--rounded);
@@ -173,14 +175,16 @@ section {
   color: var(--text);
   font-size: 13px;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transform: translateY(10px);
   transition: var(--transition);
   white-space: nowrap;
+  z-index: 10;
 }
 .icon-btn:hover .tooltip {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .footer {
@@ -226,7 +230,7 @@ section {
   </div>
 
   <div class="contact-links">
-    <a href="mailto:me@underscore.lol" class="icon-btn">
+    <a href="mailto:hello@underscore.lol" class="icon-btn">
       <img src="src/email.png" alt="Email">
       <span class="tooltip">hello@underscore.lol</span>
     </a>
@@ -236,8 +240,8 @@ section {
       <span class="tooltip">underscore-lol</span>
     </a>
 
-     <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">
-      <img src="src/github.png" alt="Twitter">
+    <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">
+      <img src="src/twitter.png" alt="Twitter">
       <span class="tooltip">@under_thesc0re</span>
     </a>
 
@@ -267,7 +271,7 @@ themeSwitch.addEventListener('change',()=>{
   root.setAttribute('data-theme',theme);
   localStorage.setItem('theme',theme);
 });
-
+  
 const typed=document.getElementById("typed");
 const words=["Building immersive experiences","Creating with code","Leading projects"];
 let i=0,j=0,deleting=false;
