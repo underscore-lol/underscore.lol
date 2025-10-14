@@ -116,7 +116,6 @@ section{
   margin:4px;
   font-size:13px;
 }
-
 .contact-links{
   display:flex;
   justify-content:center;
@@ -124,30 +123,29 @@ section{
   margin-top:25px;
   flex-wrap:wrap;
 }
-.icon-btn{
-  position:relative;
-  width:60px;
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:var(--transition);
-  cursor:pointer;
-  text-decoration:none;
-  background:transparent;
-  border:none;
-  border-radius: 8px;
+.icon-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-radius: 12px; /* slightly rounded square */
 }
-.icon-btn img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  transition:var(--transition);
-  border-radius: 0; /* square icons */
+.icon-btn img {
+  width: 70%;   /* smaller than the button */
+  height: 70%;
+  object-fit: contain;
+  transition: var(--transition);
+  border-radius: 0; /* icons fully square */
 }
-.icon-btn:hover img{
-  filter:brightness(1.5);
-  border-radius: 0; /* keep square on hover */
+.icon-btn:hover img {
+  filter: brightness(1.5);
 }
 .tooltip{
   position:absolute;
@@ -172,7 +170,6 @@ section{
   visibility:visible;
   transform:translateX(-50%) translateY(0);
 }
-
 .footer{
   text-align:center;
   color:var(--muted);
