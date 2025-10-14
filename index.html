@@ -123,39 +123,32 @@ section{
   margin-top:25px;
   flex-wrap:wrap;
 }
-
-/* Fixed icon buttons: rounded square with proper icon sizing */
 .icon-btn {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  background: transparent;
-  transition: var(--transition);
-  cursor: pointer;
-  text-decoration: none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:5px 20px;
+  font-size:16px;
+  border:2px solid var(--border);
+  border-radius:5px;
+  background:transparent;
+  cursor:pointer;
+  text-decoration:none;
+  transition:var(--transition);
 }
-
 .icon-btn img {
-  width: 60%;  /* smaller than button to leave padding */
-  height: 60%;
-  object-fit: contain; /* keep proportions */
-  display: block;
-  border-radius: 0;
-  transition: transform 0.25s ease;
+  width:32px;
+  height:32px;
+  object-fit:contain;
+  display:block;
+  transition:transform 0.25s ease;
 }
-
 .icon-btn:hover {
-  border-color: var(--accent);
+  border-color:var(--accent);
 }
-
 .icon-btn:hover img {
-  transform: scale(1.1); /* optional pop effect */
+  transform:scale(1.1);
 }
-
 .footer{
   text-align:center;
   color:var(--muted);
