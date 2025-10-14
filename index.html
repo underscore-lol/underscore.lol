@@ -123,6 +123,8 @@ section{
   margin-top:25px;
   flex-wrap:wrap;
 }
+
+/* Buttons with slight rounding and border */
 .icon-btn {
   position: relative;
   width: 60px;
@@ -134,42 +136,22 @@ section{
   cursor: pointer;
   text-decoration: none;
   background: transparent;
-  border: none;
-  border-radius: 12px; /* slightly rounded square buttons */
+  border: 2px solid var(--border); /* nice border */
+  border-radius: 12px; /* slightly rounded square */
 }
+
 .icon-btn img {
-  width: 100%;   /* fill the button */
-  height: 100%;
+  width: 32px;   /* fixed icon size */
+  height: 32px;
   object-fit: contain;
   transition: var(--transition);
-  border-radius: 0; /* fully square icons */
+  border-radius: 0; /* keep icon fully square */
 }
-.icon-btn:hover img {
-  filter: brightness(1.5);
+
+.icon-btn:hover {
+  border-color: var(--accent); /* optional hover effect */
 }
-.tooltip{
-  position:absolute;
-  bottom:70px;
-  left:50%;
-  transform:translateX(-50%) translateY(10px);
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:var(--rounded);
-  padding:6px 10px;
-  color:var(--text);
-  font-size:13px;
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:var(--transition);
-  white-space:nowrap;
-  z-index:10;
-}
-.icon-btn:hover .tooltip{
-  opacity:1;
-  visibility:visible;
-  transform:translateX(-50%) translateY(0);
-}
+
 .footer{
   text-align:center;
   color:var(--muted);
@@ -210,19 +192,15 @@ section{
   <div class="contact-links">
     <a href="mailto:hello@underscore.lol" class="icon-btn">
       <img src="src/email.png" alt="Email">
-      <span class="tooltip">hello@underscore.lol</span>
     </a>
     <a href="https://github.com/underscore-lol" target="_blank" class="icon-btn">
       <img src="src/github.png" alt="GitHub">
-      <span class="tooltip">underscore-lol</span>
     </a>
     <a href="https://twitter.com/under_thesc0re" target="_blank" class="icon-btn">
       <img src="src/twitter.png" alt="Twitter">
-      <span class="tooltip">@under_thesc0re</span>
     </a>
     <a href="https://www.roblox.com/users/5408615144/" target="_blank" class="icon-btn">
       <img src="src/roblox.png" alt="Roblox">
-      <span class="tooltip">under_thesc0re</span>
     </a>
   </div>
 </section>
