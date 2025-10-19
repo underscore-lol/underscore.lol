@@ -7,35 +7,34 @@
 <title>underscore.lol</title>
 <style>
 :root {
-  --bg: #0b0b0d;
-  --text: #fff;
-  --muted: #a0a0a0;
-  --panel: #111215;
-  --border: rgba(255,255,255,0.06);
-  --accent: #344851;
-  --transition: all .25s ease;
+  --bg:#0b0b0d;
+  --text:#fff;
+  --muted:#a0a0a0;
+  --panel:#111215;
+  --border:rgba(255,255,255,0.06);
+  --accent:#344851;
+  --transition:all .25s ease;
 }
 [data-theme="light"] {
-  --bg: #fafafa;
-  --text: #0b0b0d;
-  --muted: #555;
-  --panel: #fff;
-  --border: rgba(0,0,0,0.1);
-  --accent: #2563eb;
+  --bg:#fafafa;
+  --text:#0b0b0d;
+  --muted:#555;
+  --panel:#fff;
+  --border:rgba(0,0,0,0.1);
+  --accent:#2563eb;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition);
+html,body{
+  width:100%;
+  height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  line-height:1.4;
+  overflow:hidden;
+  transition:var(--transition);
 }
 header{
-  position: sticky;
-  top: 0;
   width:100%;
   display:flex;
   justify-content:space-between;
@@ -44,7 +43,6 @@ header{
   background:var(--panel);
   border-bottom:1px solid var(--border);
   transition:var(--transition);
-  z-index:1000;
 }
 header .brand{
   display:flex;
@@ -54,12 +52,10 @@ header .brand{
 header .brand p{
   font-size:13px;
   color:var(--muted);
-  line-height:1;
 }
 .brand img{
   width:20px;
   height:20px;
-  display:block;
   filter:invert(0);
   transition:var(--transition);
 }
@@ -74,19 +70,43 @@ header .brand p{
   cursor:pointer;
   transition:opacity 0.3s ease,color 0.25s ease;
 }
-.theme-toggle button.fade{opacity:0;}
-h1{font-size:80px;margin:0;font-weight:700}
-p{color:var(--muted);font-size:18px;margin-top:10px}
-a{color:var(--accent);text-decoration:none;margin-top:20px;display:inline-block;font-weight:600}
-a:hover{text-decoration:underline}
-.main-content{
-  flex:1;
+.theme-toggle button.fade{opacity:0}
+.wrap{
+  width:100%;
+  height:calc(100% - 78px);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:10px;
-  padding:20px;
+  padding:15px;
+  overflow:hidden;
+  text-align:center;
+}
+h1{
+  font-size:80px;
+  margin:0;
+  font-weight:700;
+}
+p{
+  color:var(--muted);
+  font-size:18px;
+  margin-top:10px;
+}
+a{
+  color:var(--accent);
+  text-decoration:none;
+  margin-top:20px;
+  display:inline-block;
+  font-weight:600;
+}
+a:hover{text-decoration:underline}
+.footer{
+  width:100%;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:6px 0;
+  border-top:1px solid var(--border);
 }
 </style>
 </head>
@@ -101,12 +121,17 @@ a:hover{text-decoration:underline}
   </div>
 </header>
 
-<div class="main-content">
+<div class="wrap">
   <h1>Oh dear!</h1>
   <p>There's nothing here yet! Check back soon!</p>
 </div>
 
+<footer class="footer">
+  © <span id="year"></span> underscore.lol
+</footer>
+
 <script>
+document.getElementById("year").textContent = new Date().getFullYear();
 const root = document.documentElement;
 const themeButton = document.getElementById("themeButton");
 const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
