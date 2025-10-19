@@ -1,1 +1,66 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="src/favicon.ico">
+<title>underscore.lol</title>
+<style>
+:root {
+  --bg: #0b0b0d;
+  --text: #fff;
+  --muted: #a0a0a0;
+  --panel: #111215;
+  --accent: #344851;
+  --transition: all .25s ease;
+}
+[data-theme="light"] {
+  --bg: #fafafa;
+  --text: #0b0b0d;
+  --muted: #555;
+  --panel: #fff;
+  --accent: #2563eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  transition: var(--transition);
+}
+h1 {
+  font-size: 80px;
+  margin: 0;
+  font-weight: 700;
+}
+p {
+  color: var(--muted);
+  font-size: 18px;
+  margin-top: 10px;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 20px;
+  display: inline-block;
+  font-weight: 600;
+}
+a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+  <div>
+    <h1>Oh dear!</h1>
+    <p>There's nothing here yet! Check back soon!</p>
+  </div>
+</body>
+</html>
