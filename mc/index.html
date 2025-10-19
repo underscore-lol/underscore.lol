@@ -52,12 +52,12 @@ header .brand{
 header .brand p{
   font-size:13px;
   color:var(--muted);
-  line-height:20px; /* ensures perfect vertical centering with 20px logo */
+  line-height:20px; /* matches logo height */
 }
 .brand img{
   width:20px;
   height:20px;
-  display:block; /* removes inline spacing */
+  vertical-align:middle; /* crucial for perfect vertical alignment with text */
   filter:invert(0);
   transition:var(--transition);
 }
