@@ -49,20 +49,18 @@ header .brand{
   align-items:center;
   gap:8px;
 }
-header .brand p{
-  font-size:13px;
-  color:var(--muted);
-  line-height:20px; /* matches logo height */
-}
-.brand img{
+header .brand img{
   width:20px;
   height:20px;
-  vertical-align:middle; /* crucial for perfect vertical alignment with text */
   filter:invert(0);
   transition:var(--transition);
 }
 [data-theme="light"] .brand img{
   filter:invert(1);
+}
+header .brand p{
+  font-size:13px;
+  color:var(--muted);
 }
 .theme-toggle button{
   background:none;
