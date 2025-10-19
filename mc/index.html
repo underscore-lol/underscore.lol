@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/src/favicon.ico">
-<title>underscore.lol — Server Status</title>
+<title>underscore.lol</title>
 <style>
 :root {
   --bg:#0b0b0d;
@@ -46,7 +46,6 @@ header{
   padding:12px 24px;
   background:var(--panel);
   border-bottom:1px solid var(--border);
-  transition:var(--transition);
 }
 header .brand{
   display:flex;
@@ -99,6 +98,7 @@ header .brand p{
   flex-direction:column;
   gap:10px;
   align-items:center;
+  margin-bottom:15px;
 }
 .server-status{
   display:flex;
@@ -113,9 +113,34 @@ header .brand p{
   background:var(--red);
   transition:background var(--transition);
 }
-.players{
+.dot.online{
+  background:var(--green);
+  animation:pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%,100% { transform:scale(1); opacity:1; }
+  50% { transform:scale(1.6); opacity:0.5; }
+}
+.players, .uptime{
   color:var(--muted);
   font-size:14px;
+}
+.map-btn{
+  display:inline-block;
+  margin-top:8px;
+  padding:8px 16px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  text-decoration:none;
+  transition:var(--transition);
+}
+.map-btn:hover{
+  transform:translateY(-3px);
+  background:var(--green);
+  border-color:var(--green);
 }
 .footer{
   width:100%;
@@ -149,6 +174,10 @@ header .brand p{
       <div class="players">
         <span id="onlineCount">0</span> / <span id="maxCount">0</span> Players
       </div>
+      <div class="uptime">
+        Uptime: <span id="uptime">0h 0m</span>
+      </div>
+      <a href="https://mc.underscore.lol:8080" target="_blank" class="map-btn">View Pl3xMap</a>
     </div>
   </section>
 </div>
@@ -183,32 +212,13 @@ const statusDot = document.getElementById("statusDot");
 const statusText = document.getElementById("statusText");
 const onlineCount = document.getElementById("onlineCount");
 const maxCount = document.getElementById("maxCount");
+const uptimeEl = document.getElementById("uptime");
+
+let onlineSince = null;
 
 function fetchServerStats(){
   fetch("https://api.mcsrvstat.us/3/mc.underscore.lol")
     .then(res => res.json())
     .then(data => {
       if(data.online){
-        statusDot.style.background = "var(--green)";
-        statusText.textContent = "Online";
-        onlineCount.textContent = data.players.online;
-        maxCount.textContent = data.players.max;
-      } else {
-        statusDot.style.background = "var(--red)";
-        statusText.textContent = "Offline";
-        onlineCount.textContent = "0";
-        maxCount.textContent = "0";
-      }
-    })
-    .catch(()=>{
-      statusDot.style.background = "var(--red)";
-      statusText.textContent = "Offline";
-      onlineCount.textContent = "0";
-      maxCount.textContent = "0";
-    });
-}
-fetchServerStats();
-setInterval(fetchServerStats, 30000);
-</script>
-</body>
-</html>
+        statusDot.classList.add("online
