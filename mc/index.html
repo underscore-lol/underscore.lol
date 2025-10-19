@@ -185,7 +185,7 @@ const onlineCount = document.getElementById("onlineCount");
 const maxCount = document.getElementById("maxCount");
 
 function fetchServerStats(){
-  fetch("https://api.mcsrvstat.us/3/YOUR_SERVER_ADDRESS")
+  fetch("https://api.mcsrvstat.us/3/mc.underscore.lol")
     .then(res => res.json())
     .then(data => {
       if(data.online){
