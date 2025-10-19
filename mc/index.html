@@ -11,6 +11,7 @@
   --text: #fff;
   --muted: #a0a0a0;
   --panel: #111215;
+  --border: rgba(255,255,255,0.06);
   --accent: #344851;
   --transition: all .25s ease;
 }
@@ -19,6 +20,7 @@
   --text: #0b0b0d;
   --muted: #555;
   --panel: #fff;
+  --border: rgba(0,0,0,0.1);
   --accent: #2563eb;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -26,10 +28,9 @@ body{
   background: var(--bg);
   color: var(--text);
   font-family: Inter, sans-serif;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  text-align: center;
   transition: var(--transition);
 }
 header{
@@ -41,14 +42,30 @@ header{
   align-items:center;
   padding:12px 24px;
   background:var(--panel);
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid var(--border);
   transition:var(--transition);
-  z-index: 1000;
+  z-index:1000;
 }
-header .brand{display:flex;align-items:center;gap:8px}
-header .brand p{font-size:13px;color:var(--muted)}
-.brand img{width:20px;height:20px;filter:invert(0);transition:var(--transition)}
-[data-theme="light"] .brand img{filter:invert(1)}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+header .brand p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1;
+}
+.brand img{
+  width:20px;
+  height:20px;
+  display:block;
+  filter:invert(0);
+  transition:var(--transition);
+}
+[data-theme="light"] .brand img{
+  filter:invert(1);
+}
 .theme-toggle button{
   background:none;
   border:none;
@@ -57,7 +74,7 @@ header .brand p{font-size:13px;color:var(--muted)}
   cursor:pointer;
   transition:opacity 0.3s ease,color 0.25s ease;
 }
-.theme-toggle button.fade{opacity:0}
+.theme-toggle button.fade{opacity:0;}
 h1{font-size:80px;margin:0;font-weight:700}
 p{color:var(--muted);font-size:18px;margin-top:10px}
 a{color:var(--accent);text-decoration:none;margin-top:20px;display:inline-block;font-weight:600}
@@ -69,7 +86,7 @@ a:hover{text-decoration:underline}
   justify-content:center;
   align-items:center;
   gap:10px;
-  padding:40px 20px 20px;
+  padding:20px;
 }
 </style>
 </head>
