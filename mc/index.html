@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/src/favicon.ico">
-<title>underscore.lol</title>
+<title>underscore.lol — Server Status</title>
 <style>
 :root {
   --bg:#0b0b0d;
@@ -13,6 +13,8 @@
   --panel:#111215;
   --border:rgba(255,255,255,0.06);
   --accent:#344851;
+  --green:#22c55e;
+  --red:#ef4444;
   --transition:all .25s ease;
 }
 [data-theme="light"] {
@@ -22,30 +24,107 @@
   --panel:#fff;
   --border:rgba(0,0,0,0.1);
   --accent:#2563eb;
+  --green:#16a34a;
+  --red:#dc2626;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.4;overflow:hidden;transition:var(--transition)}
-header{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--panel);border-bottom:1px solid var(--border);transition:var(--transition)}
-header .brand{display:flex;align-items:center;gap:8px}
-header .brand p{font-size:13px;color:var(--muted)}
-.brand img{width:20px;height:20px;filter:invert(0);transition:var(--transition)}
+html,body{
+  width:100%;
+  height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  line-height:1.4;
+  transition:var(--transition);
+  overflow:hidden;
+}
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  transition:var(--transition);
+}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+header .brand p{
+  font-size:13px;
+  color:var(--muted);
+}
+.brand img{
+  width:20px;
+  height:20px;
+  filter:invert(0);
+  transition:var(--transition);
+}
 [data-theme="light"] .brand img{filter:invert(1)}
-.theme-toggle button{background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;transition:opacity 0.3s ease,color 0.25s ease}
+.theme-toggle button{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:18px;
+  cursor:pointer;
+  transition:opacity .3s ease,color .25s ease;
+}
 .theme-toggle button.fade{opacity:0}
-.wrap{width:100%;height:calc(100% - 78px);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:15px;overflow:hidden}
-.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
-.hero img{width:130px;height:130px;border-radius:50%;border:2px solid var(--border)}
-.identity{display:flex;align-items:center;gap:6px;font-size:14px}
-.pronouns-pill{background:var(--accent);color:#fff;padding:2px 8px;border-radius:999px;font-size:11px}
-.hero h2{font-size:20px}
-.hero p{font-size:13px;color:var(--muted);max-width:360px}
-.pill{display:inline-block;background:var(--accent);color:#fff;padding:4px 10px;border-radius:999px;margin:2px;font-size:11px}
-.contact-links{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;margin-top:8px}
-.icon-btn{padding:5px 14px;font-size:12px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text);text-decoration:none;transition:var(--transition)}
-.icon-btn:hover{border-color:var(--accent);background:rgba(52,72,81,0.1);transform:translateY(-3px);font-weight:bold}
-.footer{width:100%;text-align:center;color:var(--muted);font-size:13px;padding:6px 0;border-top:1px solid var(--border)}
-.cursor{animation:blink 1s infinite}
-@keyframes blink{50%{opacity:0}}
+.wrap{
+  width:100%;
+  height:calc(100% - 78px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:15px;
+}
+.hero{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:30px 40px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.hero h2{
+  font-size:22px;
+  margin-bottom:20px;
+}
+.server-stats{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.server-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+}
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--red);
+  transition:background var(--transition);
+}
+.players{
+  color:var(--muted);
+  font-size:14px;
+}
+.footer{
+  width:100%;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:6px 0;
+  border-top:1px solid var(--border);
+}
 </style>
 </head>
 <body>
@@ -60,9 +139,18 @@ header .brand p{font-size:13px;color:var(--muted)}
 </header>
 
 <div class="wrap">
-<section class="hero">
-  <!--Server stats go here.-->
-</section>
+  <section class="hero">
+    <h2>Minecraft Server Status</h2>
+    <div class="server-stats">
+      <div class="server-status">
+        <div class="dot" id="statusDot"></div>
+        <span id="statusText">Offline</span>
+      </div>
+      <div class="players">
+        <span id="onlineCount">0</span> / <span id="maxCount">0</span> Players
+      </div>
+    </div>
+  </section>
 </div>
 
 <footer class="footer">
@@ -90,6 +178,37 @@ themeButton.addEventListener("click", () => {
     themeButton.classList.remove("fade");
   }, 200);
 });
+
+const statusDot = document.getElementById("statusDot");
+const statusText = document.getElementById("statusText");
+const onlineCount = document.getElementById("onlineCount");
+const maxCount = document.getElementById("maxCount");
+
+function fetchServerStats(){
+  fetch("https://api.mcsrvstat.us/3/YOUR_SERVER_ADDRESS")
+    .then(res => res.json())
+    .then(data => {
+      if(data.online){
+        statusDot.style.background = "var(--green)";
+        statusText.textContent = "Online";
+        onlineCount.textContent = data.players.online;
+        maxCount.textContent = data.players.max;
+      } else {
+        statusDot.style.background = "var(--red)";
+        statusText.textContent = "Offline";
+        onlineCount.textContent = "0";
+        maxCount.textContent = "0";
+      }
+    })
+    .catch(()=>{
+      statusDot.style.background = "var(--red)";
+      statusText.textContent = "Offline";
+      onlineCount.textContent = "0";
+      maxCount.textContent = "0";
+    });
+}
+fetchServerStats();
+setInterval(fetchServerStats, 30000);
 </script>
 </body>
 </html>
